@@ -1,0 +1,35 @@
+#include <stdio.h>
+int n;
+void convertdiognal(float array[][n+1], int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if(i!=j){
+                float ratio = array[j][i]/array[i][i];
+                for(int k=0; k<n+1; k++){
+                    array[j][k] -= ratio*array[i][k];
+                }
+            }
+        }
+    }
+}
+void findvalues(float array[][n+1], int n){
+    printf("the values of x y and z are: ");
+    for(int i=0; i<n; i++){
+        printf("%f ",array[i][n]/array[i][i]);
+    }
+}
+int main()
+{
+    printf("enter the number of equation");
+    scanf("%d",&n);
+    float array[n][n+1];
+    printf("enter the equations");
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n+1; j++){
+            scanf("%f", &array[i][j]);
+        }
+    }
+    convertdiognal(array, n);
+    findvalues(array, n);
+    return 0;
+}
